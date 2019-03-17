@@ -14,7 +14,7 @@ Note: I've done all of my work on a Mac, so you will see Mac-specific references
 
 ## Setup
 
-- Install [Postman]([Postman](https://www.getpostman.com/))
+- Install [Postman](https://www.getpostman.com/)
 - Install [Restful Booker API](https://github.com/mwinteringham/restful-booker) locally
 - Install [Newman](https://github.com/postmanlabs/newman)
 - Install [newman-reporter-htmlextra](https://github.com/DannyDainton/newman-reporter-htmlextra)
