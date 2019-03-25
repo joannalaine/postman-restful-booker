@@ -85,10 +85,10 @@ When running tests, you can choose to run them in various ways:
 ```console
 newman run collections/Smoke.postman_collection.json -e env/Local.postman_environment.json -r htmlextra
 ```
-- More info: [Command line integration with Newman](https://learning.getpostman.com/docs/postman/collection_runs/command_line_integration_with_newman/)
-4) This will create a newman folder in your repo directory.
-   1) Using Finder, navigate to the newman folder and open the html file that was just created to view the test report.
-- More info: [newman-reporter-htmlextra](https://github.com/DannyDainton/newman-reporter-htmlextra)
-5) Note: I've created a shell script to run the Smoke collection against the local environment, and export a report to reports/smoke.
+   - More info: [Command line integration with Newman](https://learning.getpostman.com/docs/postman/collection_runs/command_line_integration_with_newman/)
+3) This will create a newman folder in your repo directory.
+   - Using Finder, navigate to the newman folder and open the html file that was just created to view the test report.
+    - More info: [newman-reporter-htmlextra](https://github.com/DannyDainton/newman-reporter-htmlextra)
+4) Note: I've created a shell script to run the Smoke collection against the local environment, and export a report to reports/smoke.
    - Script is located in: scripts/SmokeLocal.sh
    - Review the script to see the specific options that I've used.
