@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "b5f6d4da-9eb9-49e8-8bc7-e8eb3e17b626",
 		"name": "Smoke",
+		"description": "Send a request to each endpoint and check that the response status code indicates success.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
