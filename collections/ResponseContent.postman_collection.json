@@ -124,7 +124,8 @@
 									"",
 									"pm.sendRequest(echoPostRequest, function (err, res) {",
 									"    pm.environment.set(\"bookingid\", res.json().bookingid);",
-									"    console.log(err ? err : res.json());",
+									"    var logTitle = pm.info.requestName + \" | \" + pm.info.eventName + \":\\n\";",
+									"    console.log(err ? err : logTitle + JSON.stringify(res.json(), null, 2));",
 									"});",
 									""
 								],
@@ -245,7 +246,8 @@
 									"",
 									"pm.sendRequest(echoPostRequest, function (err, res) {",
 									"    pm.environment.set(\"bookingid\", res.json().bookingid);",
-									"    console.log(err ? err : res.json());",
+									"    var logTitle = pm.info.requestName + \" | \" + pm.info.eventName + \":\\n\";",
+									"    console.log(err ? err : logTitle + JSON.stringify(res.json(), null, 2));",
 									"});",
 									""
 								],
@@ -401,7 +403,8 @@
 									"",
 									"pm.sendRequest(echoPostRequest, function (err, res) {",
 									"    pm.environment.set(\"bookingid\", res.json().bookingid);",
-									"    console.log(err ? err : res.json());",
+									"    var logTitle = pm.info.requestName + \" | \" + pm.info.eventName + \":\\n\";",
+									"    console.log(err ? err : logTitle + JSON.stringify(res.json(), null, 2));",
 									"});",
 									""
 								],
@@ -596,7 +599,8 @@
 									"",
 									"pm.sendRequest(echoPostRequest, function (err, res) {",
 									"    pm.environment.set(\"bookingid\", res.json().bookingid);",
-									"    console.log(err ? err : res.json());",
+									"    var logTitle = pm.info.requestName + \" | \" + pm.info.eventName + \":\\n\";",
+									"    console.log(err ? err : logTitle + JSON.stringify(res.json(), null, 2));",
 									"});",
 									""
 								],
@@ -671,7 +675,8 @@
 									"",
 									"pm.sendRequest(echoPostRequest, function (err, res) {",
 									"    pm.environment.set(\"bookingid\", res.json().bookingid);",
-									"    console.log(err ? err : res.json());",
+									"    var logTitle = pm.info.requestName + \" | \" + pm.info.eventName + \":\\n\";",
+									"    console.log(err ? err : logTitle + JSON.stringify(res.json(), null, 2));",
 									"});",
 									""
 								],
@@ -744,7 +749,8 @@
 							"",
 							"pm.sendRequest(echoPostRequest, function (err, res) {",
 							"    pm.environment.set(\"token\", res.json().token);",
-							"    console.log(err ? err : res.json());",
+							"    var logTitle = pm.info.requestName + \" | \" + pm.info.eventName + \":\\n\";",
+							"    console.log(err ? err : logTitle + JSON.stringify(res.json(), null, 2));",
 							"});"
 						]
 					}
