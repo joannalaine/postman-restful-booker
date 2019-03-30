@@ -10,4 +10,4 @@ mkdir -p $REPORT_PATH
 #  output via newman-reporter-htmlextra:    -r htmlextra
 #  export report to dir created above:      --reporter-htmlextra-export $REPORT_PATH
 #  with 'Smoke Test' title on HTML report page:     --reporter-htmlextra-title "Smoke Test"
-newman run ../collections/ResponseContent.postman_collection.json -e ../env/Local.postman_environment.json -r htmlextra --reporter-htmlextra-export $REPORT_PATH --reporter-htmlextra-title "Response Content Test"
+newman run ../collections/ResponseContent.postman_collection.json -e ../env/Local.postman_environment.json -d ../data/booking.json -r htmlextra --reporter-htmlextra-export $REPORT_PATH --reporter-htmlextra-title "Response Content Test"
