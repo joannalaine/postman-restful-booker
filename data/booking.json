@@ -1,9 +1,18 @@
 [{
-    "firstname": "John",
-    "lastname": "Brown",
+    "firstname": "Chidi",
+    "lastname": "Anagonye",
     "totalprice": 111,
     "depositpaid": true,
-    "checkin": "2017-12-31",
+    "checkin": "2018-12-28",
     "checkout": "2018-12-31",
     "additionalneeds": "Breakfast"
+},
+{
+    "firstname": "Tahani",
+    "lastname": "Al-Jamil",
+    "totalprice": 105,
+    "depositpaid": true,
+    "checkin": "2019-01-31",
+    "checkout": "2019-02-04",
+    "additionalneeds": "Extra pillows"
 }]
