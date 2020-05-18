@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ca196f18-bd31-47e2-af07-366cd58bb448",
+		"_postman_id": "c35efeb4-1ad5-4109-b66d-ca4bedd72ece",
 		"name": "Response Content",
 		"description": "Check each response content-type and type/format for each response body item.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -15,7 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cd1ba787-4c05-490f-9d45-c75a03638703",
+								"id": "e085edc1-13ce-4282-85fd-2786bd19ad57",
 								"exec": [
 									"pm.test(\"Status code should be 200 OK\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -37,6 +37,11 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
 					"request": {
 						"method": "POST",
 						"header": [
@@ -61,7 +66,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Booking",
@@ -72,7 +78,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1aa92ffb-c303-4d28-83bd-8cde3ef6c665",
+								"id": "59e04971-dc2c-4856-be04-3ab710d444d4",
 								"exec": [
 									"pm.test(\"Status code should be 200 OK\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -96,7 +102,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "5d67e853-5f1b-44b3-b0e3-c014bc1e680d",
+								"id": "01e77673-a3ae-47e2-a626-78ca11c5dbaa",
 								"exec": [
 									"// Test precondition: At least one booking exists, so create one",
 									"var baseURL = pm.environment.get(\"baseURL\");",
@@ -104,10 +110,10 @@
 									"",
 									"const echoPostRequest = {",
 									"    url: requestURL,",
-									"    method: 'POST',",
-									"    header: 'Content-Type:application/json',",
+									"    method: \"POST\",",
+									"    header: \"Content-Type:application/json\",",
 									"    body: {",
-									"        mode: 'raw',",
+									"        mode: \"raw\",",
 									"        raw: JSON.stringify({",
 									"            \"firstname\": pm.iterationData.get(\"firstname\"),",
 									"            \"lastname\": pm.iterationData.get(\"lastname\"),",
@@ -124,7 +130,7 @@
 									"",
 									"pm.sendRequest(echoPostRequest, function (err, res) {",
 									"    pm.environment.set(\"bookingid\", res.json().bookingid);",
-									"    var logTitle = pm.info.requestName + \" | \" + pm.info.eventName + \":\\n\";",
+									"    var logTitle = pm.info.requestName + \"|\" + pm.info.eventName + \":\\n\";",
 									"    console.log(err ? err : logTitle + JSON.stringify(res.json(), null, 2));",
 									"});",
 									""
@@ -136,10 +142,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseURL}}/booking",
 							"host": [
@@ -158,7 +160,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "853f82fb-5e9a-481e-8980-148f81f62733",
+								"id": "790f99b7-2fbf-4bc2-a3e4-d058c923d78f",
 								"exec": [
 									"pm.test(\"Status code should be 200 OK\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -218,7 +220,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "82633be6-024a-4096-b533-b3234fa32aaf",
+								"id": "7feb279d-1ca5-4d78-a1b9-68997b73a379",
 								"exec": [
 									"// Test precondition: At least one booking exists, so create one",
 									"var baseURL = pm.environment.get(\"baseURL\");",
@@ -258,10 +260,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseURL}}/booking/{{bookingid}}",
 							"host": [
@@ -281,7 +279,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a88cca40-a1ff-407c-9394-7d7fc1cffe64",
+								"id": "c8a32928-8a00-491d-81c7-3842117f7fc0",
 								"exec": [
 									"pm.test(\"Status code should be 201 Created\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -296,48 +294,56 @@
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.bookingid).to.not.be.null;",
 									"    pm.expect(jsonData.bookingid).to.be.a('number');",
+									"    pm.expect(jsonData.bookingid).to.be.above(0);",
 									"});",
 									"",
 									"pm.test(\"Response should contain firstname\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.booking.firstname).to.not.be.null;",
 									"    pm.expect(jsonData.booking.firstname).to.be.a('string');",
+									"    pm.expect(jsonData.booking.firstname).to.equal(pm.variables.get(\"firstname\"));",
 									"});",
 									"",
 									"pm.test(\"Response should contain lastname\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.booking.lastname).to.not.be.null;",
 									"    pm.expect(jsonData.booking.lastname).to.be.a('string');",
+									"    pm.expect(jsonData.booking.lastname).to.equal(pm.variables.get(\"lastname\"));",
 									"});",
 									"",
 									"pm.test(\"Response should contain totalprice\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.booking.totalprice).to.not.be.null;",
 									"    pm.expect(jsonData.booking.totalprice).to.be.a('number');",
+									"    pm.expect(jsonData.booking.totalprice).to.be.above(0);",
 									"});",
 									"",
 									"pm.test(\"Response should contain depositpaid\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.booking.depositpaid).to.not.be.null;",
 									"    pm.expect(jsonData.booking.depositpaid).to.be.a('boolean');",
+									"    pm.expect(jsonData.booking.depositpaid).to.be.true;",
 									"});",
 									"",
 									"pm.test(\"Response should contain bookingdates.checkin\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.booking.bookingdates.checkin).to.not.be.null;",
 									"    pm.expect(jsonData.booking.bookingdates.checkin).to.be.a('string');",
+									"    pm.expect(jsonData.booking.bookingdates.checkin).to.equal(pm.variables.get(\"checkin\"));",
 									"});",
 									"",
 									"pm.test(\"Response should contain bookingdates.checkout\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.booking.bookingdates.checkout).to.not.be.null;",
 									"    pm.expect(jsonData.booking.bookingdates.checkout).to.be.a('string');",
+									"    pm.expect(jsonData.booking.bookingdates.checkout).to.equal(pm.variables.get(\"checkout\"));",
 									"});",
 									"",
 									"pm.test(\"Response should contain additionalneeds\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.booking.additionalneeds).to.not.be.null;",
 									"    pm.expect(jsonData.booking.additionalneeds).to.be.a('string');",
+									"    pm.expect(jsonData.booking.additionalneeds).to.equal(pm.variables.get(\"additionalneeds\"));",
 									"});",
 									""
 								],
@@ -375,7 +381,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "84faa148-299b-4177-a6ca-4bbf414ac0cf",
+								"id": "0f4d5acf-afd2-4820-95d9-8c46193fb805",
 								"exec": [
 									"// Test precondition: At least one booking exists, so create one",
 									"var baseURL = pm.environment.get(\"baseURL\");",
@@ -414,7 +420,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1bcea1b1-6af5-4c7c-8469-0b8caedb0fd3",
+								"id": "100a50d2-6e30-4905-97d0-60cde4cc020a",
 								"exec": [
 									"pm.test(\"Status code should be 200 OK\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -511,7 +517,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8cce0460-9204-442a-a3fa-4f4c7d0d3901",
+								"id": "f741965a-0927-45a3-a83b-2a8791743548",
 								"exec": [
 									"pm.test(\"Status code should be 200 OK\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -571,7 +577,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "1bd61938-2a09-4664-9358-81cad8422be7",
+								"id": "4b6c7940-7c8e-481b-b7a4-40bfbd066106",
 								"exec": [
 									"// Test precondition: At least one booking exists, so create one",
 									"var baseURL = pm.environment.get(\"baseURL\");",
@@ -647,7 +653,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e6721e1b-0044-4c64-94aa-5cda819c8323",
+								"id": "c2afc47c-930e-4770-adca-5d4ead89d932",
 								"exec": [
 									"// Test precondition: At least one booking exists, so create one",
 									"var baseURL = pm.environment.get(\"baseURL\");",
@@ -686,7 +692,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3851f9b5-2371-4ab6-925f-4df1a5522073",
+								"id": "35d6844f-ee5d-4520-a6a1-3d178404bcad",
 								"exec": [
 									"pm.test(\"Status code should be 200 OK\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -709,7 +715,6 @@
 								"value": "token={{token}}"
 							}
 						],
-						"body": {},
 						"url": {
 							"raw": "{{baseURL}}/booking/{{bookingid}}",
 							"host": [
@@ -728,7 +733,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "0b1b2188-e4e1-4db4-8a91-16f38c020ce1",
+						"id": "8946a672-df90-4db4-841b-fc53b245bb31",
 						"type": "text/javascript",
 						"exec": [
 							"var baseURL = pm.environment.get(\"baseURL\");",
@@ -758,14 +763,15 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8bec1107-20fa-4538-9902-3ef2bd514c68",
+						"id": "940c72d0-212c-48a5-b1a2-14f981f33603",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Health Check",
@@ -776,7 +782,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "355dc45a-08c3-4079-825b-bcefd795886c",
+								"id": "5589752e-c1a2-4920-8543-8964eae1d551",
 								"exec": [
 									"pm.test(\"Status code should be 200 OK\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -790,10 +796,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseURL}}/ping",
 							"host": [
@@ -806,14 +808,15 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "aa1b0425-55f0-4ee0-985f-3705d368840e",
+				"id": "d2beb0f2-6061-4ceb-8742-cdebbf3f45d0",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -823,12 +826,13 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f422fd1b-fca4-4405-9be5-78594d51e21c",
+				"id": "2979bfb9-a7b3-42be-82ab-8f1bf4fe0657",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

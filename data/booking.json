@@ -3,8 +3,8 @@
     "lastname": "Anagonye",
     "totalprice": 111,
     "depositpaid": true,
-    "checkin": "2018-12-28",
-    "checkout": "2018-12-31",
+    "checkin": "2021-12-28",
+    "checkout": "2021-12-31",
     "additionalneeds": "Breakfast"
 },
 {
@@ -12,7 +12,7 @@
     "lastname": "Al-Jamil",
     "totalprice": 105,
     "depositpaid": true,
-    "checkin": "2019-01-31",
-    "checkout": "2019-02-04",
+    "checkin": "2021-01-31",
+    "checkout": "2021-02-04",
     "additionalneeds": "Extra pillows"
 }]
