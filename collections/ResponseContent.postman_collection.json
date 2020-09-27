@@ -694,8 +694,8 @@
 							"script": {
 								"id": "35d6844f-ee5d-4520-a6a1-3d178404bcad",
 								"exec": [
-									"pm.test(\"Status code should be 200 OK\", function () {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Status code should be 201 Created\", function () {",
+									"    pm.response.to.have.status(201);",
 									"});",
 									""
 								],
@@ -784,8 +784,8 @@
 							"script": {
 								"id": "5589752e-c1a2-4920-8543-8964eae1d551",
 								"exec": [
-									"pm.test(\"Status code should be 200 OK\", function () {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Status code should be 201 Created\", function () {",
+									"    pm.response.to.have.status(201);",
 									"});",
 									""
 								],
