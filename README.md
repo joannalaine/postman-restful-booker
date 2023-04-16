@@ -15,9 +15,13 @@ Note: I've done all of my work on a Mac, so you will see Mac-specific references
 ## Repo Structure
 
 - collections:
-  - Requests in Postman can be grouped into collections. I've used collections to organize requests into test suites.
+  - Requests in Postman can be grouped into collections. I've used collections to organize requests into test suites:
+  - `DataDriven`: These requests use data stored in external file, accessed through variables and pm.iterationData (see '**Running Data-Driven Tests**' below)
+  - `RequestResponseFormats`: These requests send various header values to specify different `content-type`s
+  - `ResponseContent`: These requests contain tests that check various aspects of the content of the responses
+  - `Smoke`: These requests send requests to each API endpoint with minimal tests
 - env:
-  - Postman uses the concept of environments to manage variables between various server setups (local, dev, production, etc.). I've created two environment configurations: local and production.
+  - Postman uses the concept of environments to manage variables between various server setups (local, dev, production, etc.). I've created two environment configurations: `Local` and `Production`.
 - scripts:
   - Postman collections can be executed via the command line using Newman. To save myself the work of entering the same command and options into my terminal, I've created shell scripts to do it for me, based on collection and environment.
 
@@ -99,7 +103,7 @@ newman run collections/Smoke.postman_collection.json -e env/Local.postman_enviro
 
 ## Running Data-Driven Tests
 
-In the Response Content collection, I use data stored in a JSON file to populate the pre-request script values. In order to import the data contained in an external file, it must be specified at collection runtime.
+In the Data Driven collection, I use data stored in a JSON file to populate the pre-request script values. In order to import the data contained in an external file, it must be specified at collection runtime.
 
 ### Run a collection with a data file
 
